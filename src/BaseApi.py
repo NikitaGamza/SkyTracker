@@ -1,6 +1,13 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 
 class BaseApi(ABC):
     """Base abstract API class"""
-    pass
+
+    @abstractmethod
+    def __init__(self):
+        pass
+
+    @abstractmethod
+    def get_aeroplanes(self, country: str) -> None:
+        pass

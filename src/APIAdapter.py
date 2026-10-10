@@ -1,7 +1,8 @@
 from requests import get
+from src.BaseApi import BaseApi
 
 
-class APIAdapter:
+class APIAdapter(BaseApi):
 
     def __init__(self) -> None:
         self.openstreetmap_url = 'https://nominatim.openstreetmap.org/search'
@@ -40,3 +41,4 @@ class APIAdapter:
         response = get(url=self.opensky_url, params=params)
 
         #Пример ответа от opensky-network можно посмотреть в задании курсовой.
+        return response.json()
