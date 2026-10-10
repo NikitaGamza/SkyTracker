@@ -1,2 +1,6 @@
+from src.APIAdapter import APIAdapter
+
+
 if __name__ == "__main__":
-    print("Init develop branch")
+    api = APIAdapter()
+    print(api.get_aeroplanes('Canada'))
