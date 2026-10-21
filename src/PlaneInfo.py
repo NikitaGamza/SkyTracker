@@ -11,3 +11,4 @@ class PlaneInfo:
         self.call_sign = call_sign
         self.speed = speed
         self.high = high
+
