@@ -6,6 +6,7 @@ if __name__ == "__main__":
     country = input("Введите название страны для запроса к API: ").strip()
     res = APIAdapter()
     res.get_aeroplanes(country)
-    print(res.aeroplanes)
-    # plane = PlaneInfo()
+
+    planes = PlaneInfo.get_filter_aeroplanes(res.aeroplanes)
+    print(planes[0])
 

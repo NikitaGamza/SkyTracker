@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class PlaneInfo:
     """Class for Planes information"""
 
@@ -28,6 +31,39 @@ class PlaneInfo:
         if value < 0:
             raise ValueError(f"{field_name} cannot be negative")
         return float(value)
+
+    @classmethod
+    def get_filter_aeroplanes(cls, aeroplanes: dict[str, Any]) -> list["PlaneInfo"]:
+        """
+        Transform data from opensky (key 'states')
+        into list of objects PlaneInfo.
+        """
+        states = aeroplanes.get("states") or []
+        result: list[PlaneInfo] = []
+
+        for state in states:
+            try:
+                call_sign = state[1] or ""
+                reg_country = state[2] or ""
+                altitude = state[7] or 0.0
+                velocity = state[9] or 0.0
+            except IndexError:
+                continue
+
+            try:
+                plane = cls(
+                    call_sign=call_sign,
+                    reg_country=reg_country,
+                    velocity=velocity,
+                    altitude=altitude,
+                )
+            except (TypeError, ValueError):
+                # skip incorrect data
+                continue
+
+            result.append(plane)
+
+        return result
 
     def __str__(self) -> str:
         """String representation"""
