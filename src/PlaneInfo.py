@@ -7,10 +7,10 @@ class PlaneInfo:
     altitude: float
 
     def __init__(self, call_sign: str, reg_country: str, velocity: float, altitude: float) -> None:
-        self.reg_country = reg_country
-        self.call_sign = call_sign
-        self.velocity = velocity
-        self.altitude = altitude
+        self.call_sign = self.__validate_string(call_sign, "call_sign is empty")
+        self.reg_country = self.__validate_string(reg_country, "reg_country is empty")
+        self.velocity = self.__validate_number(velocity, "velocity", "velocity is not number")
+        self.altitude = self.__validate_number(altitude, "altitude", "altitude is not number")
 
     # ===========> Private methods for checking data <===========
 
@@ -26,5 +26,5 @@ class PlaneInfo:
         if not isinstance(value, (int, float)):
             raise TypeError(type_error_msg)
         if value < 0:
-            raise ValueError(f"{field_name} не может быть отрицательной")
+            raise ValueError(f"{field_name} cannot be negative")
         return float(value)
