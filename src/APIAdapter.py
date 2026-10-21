@@ -7,7 +7,7 @@ class APIAdapter(BaseApi):
     def __init__(self) -> None:
         self.openstreetmap_url = 'https://nominatim.openstreetmap.org/search'
         self.opensky_url = 'https://opensky-network.org/api/states/all?'
-        self.aeroplanes = None
+        self.__aeroplanes = None
 
     def get_aeroplanes(self, country: str) -> None:
         # Headers с user-agent - обязательный параметр при запросе к nominatim.openstreetmap.
@@ -41,6 +41,9 @@ class APIAdapter(BaseApi):
         response = get(url=self.opensky_url, params=params)
 
         # Пример ответа от opensky-network можно посмотреть в задании курсовой.
-        self.aeroplanes = response.json()
-        return self.aeroplanes
+        self.__aeroplanes = response.json()
 
+    @property
+    def aeroplanes(self):
+        """return aeroplanes."""
+        return self.__aeroplanes
