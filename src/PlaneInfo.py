@@ -28,3 +28,7 @@ class PlaneInfo:
         if value < 0:
             raise ValueError(f"{field_name} cannot be negative")
         return float(value)
+
+    def __str__(self) -> str:
+        """String representation"""
+        return f"{self.call_sign}, {self.reg_country}, {self.velocity}, {self.altitude}"
