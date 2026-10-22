@@ -17,4 +17,6 @@ def filter_aeroplanes(aeroplanes, reg_countries: list[str]):
         return list(aeroplanes)
 
     reg_countries_norm = {c.strip().lower() for c in reg_countries if c.strip()}
-    return [plane for plane in aeroplanes if plane.reg_country.lower() in reg_countries_norm]
+    return [
+        plane for plane in aeroplanes if plane.reg_country.lower() in reg_countries_norm
+    ]
