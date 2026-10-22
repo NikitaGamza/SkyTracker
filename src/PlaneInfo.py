@@ -32,6 +32,25 @@ class PlaneInfo:
             raise ValueError(f"{field_name} cannot be negative")
         return float(value)
 
+    # ===========> Шесть методов сравнения через functools <===========
+
+    # functools по аналогии достроит другие 4 варианта сравнений (<=, >, >=, !=)
+    def __eq__(self, other: object) -> bool:
+        """Метод сравнения == равно, обязательный метод для functools"""
+        if not isinstance(other, PlaneInfo):
+            return NotImplemented
+        # считаем самолёты равными, если совпадает скорость и высота
+        return self.velocity == other.velocity and self.altitude == other.altitude
+
+    def __lt__(self, other: object) -> bool:
+        """Метод сравнения < меньше для построения functools"""
+        if not isinstance(other, PlaneInfo):
+            return NotImplemented
+        # сначала сравниваем по высоте, при равной высоте — по скорости
+        if self.altitude == other.altitude:
+            return self.velocity < other.velocity
+        return self.altitude < other.altitude
+
     @classmethod
     def get_filter_aeroplanes(cls, aeroplanes: dict[str, Any]) -> list["PlaneInfo"]:
         """
