@@ -32,7 +32,7 @@ class APIAdapter(BaseApi):
 
         data = response.json()
 
-        if not data or  data[0].get('boundingbox'):
+        if not data:
             print("nominatim.openstreetmap.org is enpty result")
             self.__aeroplanes = None
             return
@@ -54,6 +54,11 @@ class APIAdapter(BaseApi):
         }
 
         response = get(url=self.opensky_url, params=params)
+
+        if response.status_code != 200:
+            print(f"От opensky-network.org wrong answer: " f"{response.status_code}")
+            self.__aeroplanes = None
+            return
 
         # Пример ответа от opensky-network можно посмотреть в задании курсовой.
         self.__aeroplanes = response.json()

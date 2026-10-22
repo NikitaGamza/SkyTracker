@@ -8,6 +8,7 @@ if __name__ == "__main__":
     res.get_aeroplanes(country)
 
     planes = PlaneInfo.get_filter_aeroplanes(res.aeroplanes)
-    for plane_info in planes:
-        print(plane_info)
+    # for plane_info in planes:
+    #     print(plane_info)
+    print(planes)
 
