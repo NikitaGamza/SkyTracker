@@ -25,10 +25,25 @@ class APIAdapter(BaseApi):
 
         response = get(url=self.openstreetmap_url, params=params_nominatim, headers=headers_nominatim)
 
+        if response.status_code != 200:
+            print(f"nominatim.openstreetmap.org wrong answer: " f"{response.status_code}")
+            self.__aeroplanes = None
+            return
+
         data = response.json()
+
+        if not data or  data[0].get('boundingbox'):
+            print("nominatim.openstreetmap.org is enpty result")
+            self.__aeroplanes = None
+            return
 
         # Пример ответа от nominatim.openstreetmap можно посмотреть в задании курсовой.
         geo_coordinates = data[0].get('boundingbox')
+
+        if not geo_coordinates or len(geo_coordinates) < 4:
+            print("Could not get geo coordinates")
+            self.__aeroplanes = None
+            return
 
         # Параметры для фильтрации самолетов по их географическим координатам.
         params = {
