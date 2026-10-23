@@ -31,8 +31,3 @@ class BaseProcess(ABC):
         Пример критериев: reg_country="Iran", min_altitude=10000, max_altitude=15000.
         """
         raise NotImplementedError
-
-    # @abstractmethod
-    # def delete_aeroplanes(self, **criteria: Any) -> None:
-    #     """Удалить информацию о самолётах в файле по указанным критериям"""
-    #     raise NotImplementedError

@@ -1,6 +1,6 @@
-from src.process_file import Processing
-from src.PlaneInfo import PlaneInfo
 from src.APIAdapter import APIAdapter
+from src.PlaneInfo import PlaneInfo
+from src.process_file import Processing
 
 
 def get_top_aeroplanes(aeroplanes, top: int):
@@ -26,6 +26,7 @@ def filter_aeroplanes(aeroplanes, reg_countries: list[str]):
         plane for plane in aeroplanes if plane.reg_country.lower() in reg_countries_norm
     ]
 
+
 def load_aeroplanes_by_country(country: str) -> list[PlaneInfo]:
     """load and transform planes data by country."""
     api = APIAdapter()
@@ -50,6 +51,4 @@ def load_aeroplanes_by_country(country: str) -> list[PlaneInfo]:
                 "altitude": plane.altitude,
             }
         )
-
     return planes
-

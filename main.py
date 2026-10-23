@@ -1,6 +1,9 @@
-from src.APIAdapter import APIAdapter
-from src.PlaneInfo import PlaneInfo
-from src.utils import filter_aeroplanes, get_top_aeroplanes, sort_aeroplanes, load_aeroplanes_by_country
+from src.utils import (
+    filter_aeroplanes,
+    get_top_aeroplanes,
+    load_aeroplanes_by_country,
+    sort_aeroplanes,
+)
 
 if __name__ == "__main__":
     country = input("Введите название страны для запроса к API: ").strip()

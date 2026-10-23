@@ -32,7 +32,10 @@ class Processing(BaseProcess):
 
         # Check if plane is already in file
         for item in data:
-            if item.get("callsign") == callsign and item.get("reg_country") == reg_country:
+            if (
+                item.get("callsign") == callsign
+                and item.get("reg_country") == reg_country
+            ):
                 return
 
         data.append(aeroplane_data)
