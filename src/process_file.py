@@ -27,13 +27,13 @@ class Processing(BaseProcess):
         """Add record into planes file with avoiding doubles"""
         data = self._read_all()
 
-        callsign = aeroplane_data.get("callsign")
+        call_sign = aeroplane_data.get("call_sign")
         reg_country = aeroplane_data.get("reg_country")
 
         # Check if plane is already in file
         for item in data:
             if (
-                item.get("callsign") == callsign
+                item.get("call_sign") == call_sign
                 and item.get("reg_country") == reg_country
             ):
                 return

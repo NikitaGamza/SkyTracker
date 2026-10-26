@@ -6184,5 +6184,17 @@
     "reg_country": "Switzerland",
     "velocity": 0.0,
     "altitude": 0.0
+  },
+  {
+    "callsign": "ELY010",
+    "reg_country": "Israel",
+    "velocity": 254.5,
+    "altitude": 11277.6
+  },
+  {
+    "callsign": "ETH500",
+    "reg_country": "Ethiopia",
+    "velocity": 231.18,
+    "altitude": 12192.0
   }
 ]
